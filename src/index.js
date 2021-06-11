@@ -91,7 +91,7 @@ class LoginControl extends React.Component {
 
     const numbers = [1, 2, 3, 4, 5];
     const listItems = numbers.map((number) =>
-      <li>{number * 2}</li>
+      <li key={number.toString()}>{number * 2}</li>
     );
 
     return (
