@@ -71,7 +71,6 @@ function BoilingVerdict(props) {
   return <p>The water would not boil.</p>;
 }
 
-
 const scaleNames = {
   c: 'Celsius',
   f: 'Fahrenheit'
