@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useReducer } from 'react';
 import ReactDOM from 'react-dom';
 
 function Hello() {
@@ -206,8 +206,53 @@ class LoginControl extends React.Component {
   }
 }
 
+function CounterUsingState() {
+  const [count, setCount] = useState(0);
+
+  function increment() {
+    setCount(count + 1);
+  }
+
+  function decrement() {
+    setCount(count - 1);
+  }
+
+  return (
+    <>
+      CounterUsingState: {count}
+      <button onClick={() => decrement()}>-</button>
+      <button onClick={() => increment()}>+</button>
+    </>
+  );
+}
+
+const initialState = { count: 0 };
+
+function reducer(state, action){
+  switch(action.type){
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter(){
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return(
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
+  );
+}
+
 ReactDOM.render(
-  <Calculator />,
+  <CounterUsingState />,
   document.querySelector('#root')
 )
 
