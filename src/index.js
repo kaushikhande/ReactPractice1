@@ -553,8 +553,42 @@ class FileInput extends React.Component {
   }
 }
 
+function Card(props) {
+  return (
+    <li>{props.tasks.join(' ')}</li>
+  );
+}
+
+
+const cardsList =
+[
+  {
+    "tasks": ['one', 'two']
+  },
+  {
+    tasks: ['three', 'four']
+  }
+];
+
+
+function CardList(props) {
+  const list = props.cardsList.map((number) =>  <Card tasks={number["tasks"]} />);
+  function handleChange(e) {
+    console.log(e);
+    // body...
+  }
+
+  return (
+    <div>
+      <header>Here we are</header>
+      {list}
+      <input name="add_task" onChange={handleChange}/>
+    </div>
+  )
+}
+
 ReactDOM.render(
-  <FileInput />,
+  <CardList cardsList={cardsList} />,
   document.getElementById('root')
 );
 
