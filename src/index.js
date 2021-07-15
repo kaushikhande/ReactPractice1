@@ -587,8 +587,68 @@ function CardList(props) {
   )
 }
 
+// component lifecycles.
+class LifeCycleDemo extends React.Component {
+  state = {counter: 1};
+
+  constructor(props) {
+    super(props);
+    console.log('constructing');
+    console.log('state already set to' + this.state.counter);
+  }
+
+  componentWillMount() {
+    console.log('component will mount');
+  }
+
+  componentDidMount() {
+    console.log('component did mount');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('Current Props' + this.props);
+    console.log('Next Props' + nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Deciding to update')
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('About to update');
+  }
+
+  componentDidUpdate() {
+    console.log('Updated.');
+  }
+
+  componentWillUnmount() {
+    console.log('Good Bye Cruel World...');
+  }
+
+  handleClick = () => {
+    this.setState({
+      counter: this.state.counter + 1
+    });
+  }
+
+  render() {
+    console.log('rendering......')
+    return (
+      <div>
+        <span>Counter: {this.state.counter}</span>
+        <br />
+        <button onClick={this.handleClick}>
+          Click To Increment
+        </button>
+      </div>
+    );
+  }
+}
+// component lifecycles end.
 ReactDOM.render(
-  <CardList cardsList={cardsList} />,
+  <LifeCycleDemo />,
   document.getElementById('root')
 );
 
